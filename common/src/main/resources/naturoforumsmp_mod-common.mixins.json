@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "de.naturoforumsmp_mod.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+    "LocalPlayerMixin",
+    "PauseScreenMixin"
+  ],
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
