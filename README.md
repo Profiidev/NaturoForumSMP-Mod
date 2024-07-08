@@ -1,0 +1,1 @@
+This is just a Fabric Mod which includes automatic Elytra switching and some more Client Tweaks. Be careful, some servers consider features of this mod cheating. Use it carefully, unless you want to get banned. The mod developers are not responsible for any harm you create using the mod.
