@@ -3,6 +3,7 @@ package de.naturoforumsmp_mod.config;
 import com.mojang.blaze3d.platform.InputConstants;
 import de.naturoforumsmp_mod.AutoElytra;
 import de.naturoforumsmp_mod.feature.AutoEquipController;
+import de.naturoforumsmp_mod.feature.SpeedHack;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.KeyMapping;
@@ -31,6 +32,22 @@ public class Keybinds {
 
                 AutoElytra.sendMessage(message);
                 Configuration.save();
+            });
+
+    public static final KeyMapping SPEED_UP = registerKeybind(
+            new KeyMapping("key.autoelytra.speed.up", InputConstants.Type.KEYSYM, -1, KeyMapping.CATEGORY_INVENTORY),
+            () -> {
+                if (Minecraft.getInstance().screen != null) return; // Only allow when no screen is open
+
+                SpeedHack.changeSpeed(true);
+            });
+
+    public static final KeyMapping SPEED_DOWN = registerKeybind(
+            new KeyMapping("key.autoelytra.speed.down", InputConstants.Type.KEYSYM, -1, KeyMapping.CATEGORY_INVENTORY),
+            () -> {
+                if (Minecraft.getInstance().screen != null) return; // Only allow when no screen is open
+
+                SpeedHack.changeSpeed(false);
             });
 
     private static KeyMapping registerKeybind(KeyMapping mapping, Runnable action) {

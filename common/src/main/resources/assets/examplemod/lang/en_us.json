@@ -6,9 +6,23 @@
   "option.autoelytra.equip.enabled": "Auto Equip Enabled",
   "toolip.autoelytra.equip.enabled": "Weather the elytra auto equip functionality is enabled.",
 
+  "option.autoelytra.speed.player": "Player Speed",
+  "tooltip.autoelytra.speed.player": "Set Player Speed for the SpeedHack",
+
   "key.autoelytra.toggle.equip": "Toggle Auto Elytra Swap",
   "tooltip.autoelytra.toggle.equip": "The keybind used to toggle elytra auto equip.",
 
+  "key.autoelytra.speed.down": "Decrease Speed",
+  "tooltip.autoelytra.speed.down": "Decreases the Player Speed Min 0",
+
+  "key.autoelytra.speed.up": "Increase Speed",
+  "tooltip.autoelytra.speed.up": "Increases the Player Speed Max 9",
+
   "message.autoelytra.equip.enabled": "Elytra auto equip enabled ",
-  "message.autoelytra.equip.disabled": "Elytra auto equip disabled"
+  "message.autoelytra.equip.disabled": "Elytra auto equip disabled",
+
+  "message.autoelytra.speed.too_high": "Speed is already at the maximum value (9)!",
+  "message.autoelytra.speed.too_low": "Speed is already off.",
+  "message.autoelytra.speed.up": "Your Speed was increased to %s",
+  "message.autoelytra.speed.down": "Your Speed was decreased to %s"
 }

@@ -18,6 +18,7 @@ public class Configuration {
     private static final List<ConfigOption<Object>> options = new ArrayList<>();
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     public static final ConfigOption<Boolean> AUTO_EQUIP_ENABLED = registerOption(new ConfigOption<>("auto_equip_enabled", true));
+    public static final ConfigOption<Double> PLAYER_SPEED = registerOption(new ConfigOption<>("player_speed", 0.0));
 
     public static void load() {
         AutoElytra.logger.info("Loading Auto Elytra config...");

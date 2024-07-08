@@ -27,6 +27,24 @@ public class ClothConfigFactory {
                 .setTooltip(Component.translatable("tooltip.autoelytra.toggle.equip"))
                 .build());
 
+        general.addEntry(entryBuilder.startDoubleField(
+                Component.translatable("option.autoelytra.speed.player"), Configuration.PLAYER_SPEED.get())
+                .setDefaultValue(Configuration.PLAYER_SPEED.getDefault())
+                .setSaveConsumer((d) -> {
+                    Configuration.PLAYER_SPEED.set(Math.max(9, Math.min(0, d)));
+                })
+                .build());
+
+        general.addEntry(entryBuilder.fillKeybindingField(
+                        Component.translatable("key.autoelytra.speed.up"), Keybinds.SPEED_UP)
+                .setTooltip(Component.translatable("tooltip.autoelytra.speed.up"))
+                .build());
+
+        general.addEntry(entryBuilder.fillKeybindingField(
+                        Component.translatable("key.autoelytra.speed.down"), Keybinds.SPEED_DOWN)
+                .setTooltip(Component.translatable("tooltip.autoelytra.speed.down"))
+                .build());
+
         return builder.build();
     }
 }
