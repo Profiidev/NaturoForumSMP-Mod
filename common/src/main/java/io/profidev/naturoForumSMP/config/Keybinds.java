@@ -15,9 +15,9 @@ import java.util.Map;
 public class Keybinds {
     protected static final Map<KeyMapping, Runnable> KEYBINDS = new HashMap<>();
     public static final KeyMapping TOGGLE_AUTO_EQUIP = registerKeybind(
-            new KeyMapping("key.naturoforumsmp.toggle.equip", InputConstants.Type.KEYSYM, -1, KeyMapping.CATEGORY_INVENTORY),
+            new KeyMapping("key.naturoforumsmp.toggle.equip", InputConstants.Type.KEYBOARD, -1, KeyMapping.Category.INVENTORY),
             () -> {
-                if (Minecraft.getInstance().screen != null) return; // Only allow when no screen is open
+                if (Minecraft.getInstance().gui.screen() != null) return; // Only allow when no screen is open
 
                 boolean enabling = !Configuration.AUTO_EQUIP_ENABLED.get();
 

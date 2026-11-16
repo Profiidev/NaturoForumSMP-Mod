@@ -1,74 +1,33 @@
 package io.profidev.naturoForumSMP.feature;
 
-import com.mojang.brigadier.StringReader;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.commands.CommandBuildContext;
-import net.minecraft.commands.Commands;
-import net.minecraft.commands.arguments.NbtPathArgument;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.Registry;
-import net.minecraft.nbt.ByteTag;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
-import java.util.stream.Stream;
-
 public class AutoEquipController {
-    private static final NbtPathArgument.NbtPath[] BLACKLISTED_TAGS = parseTagPaths("tag.Damage"); // List of tags to ignore when searching for previous chest item
+    // Chest item before the elytra was equipped, without its damage so wear during flight still matches
     @Nullable
-    private static Tag previousChestTag;
+    private static ItemStack previousChestItem;
 
     public static void setPreviousChestItem(ItemStack item) {
-        if (!item.isEmpty()) previousChestTag = getFilteredTag(item);
+        if (!item.isEmpty()) previousChestItem = withoutDamage(item);
     }
 
     public static boolean hasPreviousChestItem() {
-        return previousChestTag != null;
+        return previousChestItem != null;
     }
 
     public static void resetPreviousChestItem() {
-        previousChestTag = null;
+        previousChestItem = null;
     }
 
     public static boolean matchesPreviousChestItem(ItemStack item) {
-        return !item.isEmpty() && getFilteredTag(item).equals(previousChestTag);
+        return previousChestItem != null && !item.isEmpty() && ItemStack.isSameItemSameComponents(previousChestItem, withoutDamage(item));
     }
 
-    private static Tag getFilteredTag(ItemStack itemStack) {
-        Tag tag = itemStack.save(new CommandBuildContext() {
-            @Override
-            public Stream<ResourceKey<? extends Registry<?>>> listRegistries() {
-                return Stream.empty();
-            }
-
-            @Override
-            public <T> Optional<HolderLookup.RegistryLookup<T>> lookup(ResourceKey<? extends Registry<? extends T>> resourceKey) {
-                return Optional.empty();
-            }
-        }, new CompoundTag());
-
-        // Remove all blacklisted tags
-        for (NbtPathArgument.NbtPath path : BLACKLISTED_TAGS) {
-            path.remove(tag);
-        }
-
-        return tag;
-    }
-
-    private static NbtPathArgument.NbtPath[] parseTagPaths(String... args) {
-        NbtPathArgument.NbtPath[] result = new NbtPathArgument.NbtPath[args.length];
-        for (int i = 0; i < args.length; i++) {
-            try {
-                // Use data command's path parser for blacklist
-                result[i] = NbtPathArgument.nbtPath().parse(new StringReader(args[i]));
-            } catch (CommandSyntaxException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return result;
+    private static ItemStack withoutDamage(ItemStack item) {
+        ItemStack copy = item.copy();
+        copy.remove(DataComponents.DAMAGE);
+        return copy;
     }
 }

@@ -26,9 +26,11 @@
     "naturoforumsmp.mixins.json"
   ],
   "depends": {
-    "fabric": "*",
-    "minecraft": ">=1.21",
-    "architectury": ">=13.0.3"
+    "fabricloader": ">=0.20.1",
+    "fabric-api": "*",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "architectury": ">=22.0.3"
   },
   "suggests": {
     "cloth-config": "*"

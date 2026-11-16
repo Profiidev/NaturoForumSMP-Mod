@@ -2,6 +2,8 @@ package io.profidev.naturoForumSMP;
 
 import io.profidev.naturoForumSMP.config.Configuration;
 import io.profidev.naturoForumSMP.config.Keybinds;
+import io.profidev.naturoForumSMP.feature.AutoEquipController;
+import dev.architectury.event.events.client.ClientPlayerEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -20,11 +22,12 @@ public class NaturoForumSMP
         logger.info("{} v{} for {} successfully enabled!", mod_name, mod_version, platform);
         Configuration.load();
         Keybinds.setup();
+        ClientPlayerEvent.CLIENT_PLAYER_QUIT.register(player -> AutoEquipController.resetPreviousChestItem());
     }
 
     public static void sendMessage(Component component) {
         if (client.player == null) return;
         Component message = Component.literal("[NaturoForumSMP] ").append(component);
-        client.player.displayClientMessage(message, false);
+        client.player.sendSystemMessage(message);
     }
 }
