@@ -13,6 +13,7 @@
     "issues": "https://github.com/Profiidev/NaturoForumSMP-Mod/issues"
   },
   "license": "GPL-2.0-only",
+  "icon": "assets/naturoforumsmp/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
