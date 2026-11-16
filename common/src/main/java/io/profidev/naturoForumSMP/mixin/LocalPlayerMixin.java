@@ -1,9 +1,9 @@
-package de.naturoforumsmp_mod.mixin;
+package io.profidev.naturoForumSMP.mixin;
 
 import com.mojang.authlib.GameProfile;
-import de.naturoforumsmp_mod.AutoElytra;
-import de.naturoforumsmp_mod.feature.AutoEquipController;
-import de.naturoforumsmp_mod.config.Configuration;
+import io.profidev.naturoForumSMP.NaturoForumSMP;
+import io.profidev.naturoForumSMP.feature.AutoEquipController;
+import io.profidev.naturoForumSMP.config.Configuration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -45,26 +45,26 @@ public class LocalPlayerMixin extends AbstractClientPlayer {
     private void tryEquipElytra(CallbackInfo ci) {
         if (!Configuration.AUTO_EQUIP_ENABLED.get()) return;
 
-        if (this.autoelytra$canStartFlying()) {
-            List<ItemStack> inventory = this.autoelytra$getCombinedInventory();
+        if (this.naturoforumsmp$canStartFlying()) {
+            List<ItemStack> inventory = this.naturoforumsmp$getCombinedInventory();
 
             // Return if elytra is already equipped
-            if (inventory.get(AutoElytra.CHEST_SLOT).getItem() instanceof ElytraItem) return;
+            if (inventory.get(NaturoForumSMP.CHEST_SLOT).getItem() instanceof ElytraItem) return;
 
             // Find elytra in inventory
             for (int slot = 0; slot < inventory.size(); slot++) {
                 ItemStack stack = inventory.get(slot);
 
                 if (stack.getItem() instanceof ElytraItem) {
-                    AutoEquipController.setPreviousChestItem(inventory.get(AutoElytra.CHEST_SLOT));
-                    this.autoelytra$swapSlots(AutoElytra.CHEST_SLOT, slot);
+                    AutoEquipController.setPreviousChestItem(inventory.get(NaturoForumSMP.CHEST_SLOT));
+                    this.naturoforumsmp$swapSlots(NaturoForumSMP.CHEST_SLOT, slot);
                     return;
                 }
             }
         }
     }
 
-    @Unique private boolean autoelytra$canStartFlying() {
+    @Unique private boolean naturoforumsmp$canStartFlying() {
         return !this.onGround() && !this.isFallFlying() && !this.isInWater() && !this.hasEffect(MobEffects.LEVITATION);
     }
 
@@ -72,15 +72,15 @@ public class LocalPlayerMixin extends AbstractClientPlayer {
     private void unequipElytra(CallbackInfo ci) {
         if (!Configuration.AUTO_EQUIP_ENABLED.get()) return;
 
-        List<ItemStack> inventory = this.autoelytra$getCombinedInventory();
+        List<ItemStack> inventory = this.naturoforumsmp$getCombinedInventory();
 
         // Check if just stopped flying
-        if (AutoEquipController.hasPreviousChestItem() && !this.isFallFlying() && inventory.get(AutoElytra.CHEST_SLOT).getItem() instanceof ElytraItem) {
+        if (AutoEquipController.hasPreviousChestItem() && !this.isFallFlying() && inventory.get(NaturoForumSMP.CHEST_SLOT).getItem() instanceof ElytraItem) {
 
             // Find previous chest item
             for (int slot = 0; slot < inventory.size(); slot++) {
                 if (AutoEquipController.matchesPreviousChestItem(inventory.get(slot))) {
-                    this.autoelytra$swapSlots(AutoElytra.CHEST_SLOT, slot);
+                    this.naturoforumsmp$swapSlots(NaturoForumSMP.CHEST_SLOT, slot);
                     break;
                 }
             }
@@ -89,7 +89,7 @@ public class LocalPlayerMixin extends AbstractClientPlayer {
         }
     }
 
-    @Unique private void autoelytra$swapSlots(int slotA, int slotB) {
+    @Unique private void naturoforumsmp$swapSlots(int slotA, int slotB) {
 
         // Convert inventory slot to menu slot
         NonNullList<Slot> slots = this.inventoryMenu.slots;
@@ -111,7 +111,7 @@ public class LocalPlayerMixin extends AbstractClientPlayer {
         this.minecraft.gameMode.handleInventoryMouseClick(this.inventoryMenu.containerId, slotAMenu, 0, ClickType.PICKUP, this);
     }
 
-    @Unique private List<ItemStack> autoelytra$getCombinedInventory() {
+    @Unique private List<ItemStack> naturoforumsmp$getCombinedInventory() {
         Inventory inventory = this.getInventory();
 
         List<ItemStack> result = new ArrayList<>();

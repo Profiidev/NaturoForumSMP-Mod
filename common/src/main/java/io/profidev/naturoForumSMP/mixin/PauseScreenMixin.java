@@ -1,6 +1,6 @@
-package de.naturoforumsmp_mod.mixin;
+package io.profidev.naturoForumSMP.mixin;
 
-import de.naturoforumsmp_mod.feature.AutoEquipController;
+import io.profidev.naturoForumSMP.feature.AutoEquipController;
 import net.minecraft.client.gui.screens.PauseScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

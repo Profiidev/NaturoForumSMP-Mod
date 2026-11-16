@@ -1,0 +1,14 @@
+{
+  "modmenu.descriptionTranslation.naturoforumsmp": "The official NaturoForumSMP Mod",
+
+  "title.naturoforumsmp.config": "NaturoForumSMP Configuration",
+
+  "option.naturoforumsmp.equip.enabled": "Auto Equip Enabled",
+  "tooltip.naturoforumsmp.equip.enabled": "Whether the elytra auto equip functionality is enabled.",
+
+  "key.naturoforumsmp.toggle.equip": "Toggle Auto Elytra Swap",
+  "tooltip.naturoforumsmp.toggle.equip": "The keybind used to toggle elytra auto equip.",
+
+  "message.naturoforumsmp.equip.enabled": "Elytra auto equip enabled",
+  "message.naturoforumsmp.equip.disabled": "Elytra auto equip disabled"
+}

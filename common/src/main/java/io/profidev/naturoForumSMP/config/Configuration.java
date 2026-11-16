@@ -1,8 +1,8 @@
-package de.naturoforumsmp_mod.config;
+package io.profidev.naturoForumSMP.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import de.naturoforumsmp_mod.AutoElytra;
+import io.profidev.naturoForumSMP.NaturoForumSMP;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.client.gui.screens.Screen;
 
@@ -20,7 +20,7 @@ public class Configuration {
     public static final ConfigOption<Boolean> AUTO_EQUIP_ENABLED = registerOption(new ConfigOption<>("auto_equip_enabled", true));
 
     public static void load() {
-        AutoElytra.logger.info("Loading Auto Elytra config...");
+        NaturoForumSMP.logger.info("Loading config...");
         String data;
 
         try {
@@ -35,7 +35,7 @@ public class Configuration {
     }
 
     public static void save() {
-        AutoElytra.logger.info("Saving Auto Elytra config...");
+        NaturoForumSMP.logger.info("Saving config...");
 
         Map<String, Object> map = new HashMap<>();
         for (ConfigOption<Object> option: options) {
@@ -50,7 +50,7 @@ public class Configuration {
     }
 
     public static Screen createScreen(Screen parent)  {
-        /* AutoElytra uses cloth config to generate configs screens
+        /* NaturoForumSMP uses cloth config to generate configs screens
         If the cloth config dependency is not found do not attempt to generate the screen. */
         if (!Configuration.ClothConfigInstalled()) return null;
         return ClothConfigFactory.create(parent);
@@ -67,7 +67,7 @@ public class Configuration {
     }
 
     public static Path getConfigFile() {
-        return getConfigDirectory().resolve(AutoElytra.MOD_ID + ".json");
+        return getConfigDirectory().resolve(NaturoForumSMP.MOD_ID + ".json");
     }
 
     private static <T> ConfigOption<T> registerOption(ConfigOption<T> option) {

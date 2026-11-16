@@ -10,4 +10,4 @@ pluginManagement {
 include("common")
 include("fabric")
 
-rootProject.name = "architectury-naturoforumsmp-mod"
+rootProject.name = "NaturoForumSMP-Mod"

@@ -1,8 +1,8 @@
-package de.naturoforumsmp_mod.fabric;
+package io.profidev.naturoForumSMP.fabric;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
-import de.naturoforumsmp_mod.config.Configuration;
+import io.profidev.naturoForumSMP.config.Configuration;
 
 public class ModMenuIntegration implements ModMenuApi {
     @Override

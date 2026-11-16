@@ -1,4 +1,4 @@
-package de.naturoforumsmp_mod.config;
+package io.profidev.naturoForumSMP.config;
 
 import org.jetbrains.annotations.Nullable;
 

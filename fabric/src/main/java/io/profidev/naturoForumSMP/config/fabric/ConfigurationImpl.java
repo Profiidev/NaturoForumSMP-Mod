@@ -1,4 +1,4 @@
-package de.naturoforumsmp_mod.config.fabric;
+package io.profidev.naturoForumSMP.config.fabric;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;

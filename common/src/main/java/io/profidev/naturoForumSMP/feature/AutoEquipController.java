@@ -1,4 +1,4 @@
-package de.naturoforumsmp_mod.feature;
+package io.profidev.naturoForumSMP.feature;
 
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;

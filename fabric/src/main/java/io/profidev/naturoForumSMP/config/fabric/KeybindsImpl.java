@@ -1,6 +1,6 @@
-package de.naturoforumsmp_mod.config.fabric;
+package io.profidev.naturoForumSMP.config.fabric;
 
-import de.naturoforumsmp_mod.config.Keybinds;
+import io.profidev.naturoForumSMP.config.Keybinds;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.KeyMapping;

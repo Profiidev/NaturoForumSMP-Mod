@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "naturoforumsmp_mod",
+  "id": "naturoforumsmp",
   "version": "${version}",
   "name": "NaturoForumSMP Mod",
   "description": "The official NaturoForumSMP Mod",
@@ -12,18 +12,18 @@
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
   "license": "Insert License Here",
-  "icon": "assets/examplemod/icon.png",
+  "icon": "assets/naturoforumsmp/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
-      "de.naturoforumsmp_mod.fabric.NaturoForumSMP"
+      "io.profidev.naturoForumSMP.fabric.NaturoForumSMPFabric"
     ],
     "modmenu": [
-      "de.naturoforumsmp_mod.fabric.ModMenuIntegration"
+      "io.profidev.naturoForumSMP.fabric.ModMenuIntegration"
     ]
   },
   "mixins": [
-    "naturoforumsmp_mod-common.mixins.json"
+    "naturoforumsmp.mixins.json"
   ],
   "depends": {
     "fabric": "*",

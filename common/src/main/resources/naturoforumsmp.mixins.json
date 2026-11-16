@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "de.naturoforumsmp_mod.mixin",
+  "package": "io.profidev.naturoForumSMP.mixin",
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "client": [
