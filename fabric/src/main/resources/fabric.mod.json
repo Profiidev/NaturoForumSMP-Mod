@@ -3,16 +3,16 @@
   "id": "naturoforumsmp",
   "version": "${version}",
   "name": "NaturoForumSMP Mod",
-  "description": "The official NaturoForumSMP Mod",
+  "description": "Client-side tweaks for the NaturoForumSMP server, including automatic elytra swapping.",
   "authors": [
-    "Me!"
+    "Profiidev"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/Profiidev/NaturoForumSMP-Mod",
+    "sources": "https://github.com/Profiidev/NaturoForumSMP-Mod",
+    "issues": "https://github.com/Profiidev/NaturoForumSMP-Mod/issues"
   },
-  "license": "Insert License Here",
-  "icon": "assets/naturoforumsmp/icon.png",
+  "license": "GPL-2.0-only",
   "environment": "client",
   "entrypoints": {
     "client": [
@@ -30,8 +30,10 @@
     "minecraft": ">=1.21",
     "architectury": ">=13.0.3"
   },
-
   "suggests": {
     "cloth-config": "*"
-  }
+  },
+  "contributors": [
+    "NimajnebEC (original AutoElytra code)"
+  ]
 }
