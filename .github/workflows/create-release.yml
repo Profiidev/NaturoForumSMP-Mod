@@ -64,3 +64,47 @@ jobs:
             Release version ${{ github.ref_name }} has been created.
           generate_release_notes: true
           files: fabric/build/libs/naturoforumsmp-*[0-9].jar
+
+      - name: Publish to Modrinth
+        env:
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          VERSION="${TAG#v}"
+          JAR="fabric/build/libs/naturoforumsmp-$VERSION.jar"
+          MC_VERSION=$(sed -n 's/^minecraft_version=//p' gradle.properties)
+          # Project may be unlisted or draft, so resolve the slug with the token
+          PROJECT_ID=$(curl -sf -H "Authorization: $MODRINTH_TOKEN" https://api.modrinth.com/v2/project/naturoforumsmp-mod | jq -r .id)
+          CHANGELOG=$(gh release view "$TAG" --json body -q .body)
+
+          jq -n \
+            --arg project_id "$PROJECT_ID" \
+            --arg version "$VERSION" \
+            --arg mc "$MC_VERSION" \
+            --arg changelog "$CHANGELOG" \
+            '{
+              project_id: $project_id,
+              name: $version,
+              version_number: $version,
+              changelog: $changelog,
+              version_type: "release",
+              game_versions: [$mc],
+              loaders: ["fabric"],
+              featured: true,
+              status: "listed",
+              file_parts: ["jar"],
+              primary_file: "jar",
+              dependencies: [
+                {project_id: "P7dR8mSH", dependency_type: "required"},
+                {project_id: "lhGA9TYQ", dependency_type: "required"},
+                {project_id: "9s6osm5g", dependency_type: "optional"},
+                {project_id: "mOgUt4GM", dependency_type: "optional"}
+              ]
+            }' > modrinth.json
+
+          curl -sSf -X POST https://api.modrinth.com/v2/version \
+            -H "Authorization: $MODRINTH_TOKEN" \
+            -H "User-Agent: Profiidev/NaturoForumSMP-Mod" \
+            -F "data=<modrinth.json;type=application/json" \
+            -F "jar=@$JAR;type=application/java-archive"
